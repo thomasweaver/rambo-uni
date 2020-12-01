@@ -30,6 +30,8 @@ vagrant init ubuntu/focal64
 cat Vagrantfile 
 ```
 
+Configuration for your running guests including private keys can be found in .vagrant folder
+
 ## Provisioning
 Provisioners can be defined within the Vagrantfile configuration such as a Shell script, ansible playbook, chef recipe etc.
 
@@ -69,5 +71,59 @@ Vagrant.configure("2") do |config|
 end
 ```
 
+### Public Network
+Public network in this case mean bridged i.e. it bridges with your hosts physical connection.
 
+```
+Vagrant.configure("2") do |config|
+  config.vm.network "public_network"
+end
+```
 
+## Synced Folders
+By default vagrant syncs the current folder that you are in with /vagrant within the guest.
+For windows the shared folder can be found by going to:
+
+```
+//vboxsvr/vagrant
+```
+
+in most cases /vagrant is a VirtualBox shared folder, in some other cases the folder is only synced on boot.
+
+## Basic commands
+### Initialise a configuration
+BOXNAME is the name of the box you want to be the default guest
+```
+vagrant init BOXNAME
+```
+
+### Box commands
+Prebuilt boxes can be found at [Discover Vagrant Boxes](https://app.vagrantup.com/boxes/search).
+```
+vagrant box add ubuntu/trusty64 #download the ubuntu/trusty64 box
+vagrant box list #list all boxes in local inventory
+```
+
+### Up commands
+To bring up or build your environment as described in the Vagrantfile
+
+```
+vagrant up #don't specify a name and all guest are brought up
+vagrant up server1 #specifying server1 mean only bring up the guest with that name
+```
+
+### Halt commands
+Using the halt keyword enables you to stop your guests, it will first try a graceful stop and then a hard stop if that fails
+
+```
+vagrant halt #don't specify a name brings all guests down
+vagrant halt server1 #specifying server1 will only bring down this guest
+```
+
+### Destroy commands
+The destroy keyword can destroy a single guest or all guests.
+
+```
+vagrant destroy #destroy all guests, youw ill be prompted to confirm
+vagrant destroy -f #specifying -f means your are not prompted to confirm
+```
