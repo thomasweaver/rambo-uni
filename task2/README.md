@@ -75,6 +75,7 @@ Open up your Vagrantfile in your favourite editor and add the following
 
 ```
 config.vm.network "forwarded_port", guest: 80, host: 8080
+```
 
 We can now reload the guest. Notice this time we do not need to run the provisioner
 
