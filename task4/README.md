@@ -45,7 +45,7 @@ Now lets download our website. On your host machine run:
 wget https://github.com/thomasweaver/rambo-uni/raw/main/task4/solution/html.tar.gz
 ```
 
-We can now use a provisioner to provision this website to our host
+We can now use a provisioner to provision this website to our guest
 
 Add the following to your Shell script provisioner in your Vagrantfile:
 
