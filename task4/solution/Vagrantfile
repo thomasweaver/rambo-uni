@@ -17,6 +17,7 @@ config.vm.define "web" do |web|
     web.vm.provision "shell", inline: <<-SHELL
         apt update
         apt install -y apache2
+	tar -xzf /vagrant/html.tar.gz -C /var/www/html/
     SHELL
 end
 end
